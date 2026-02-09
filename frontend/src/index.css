@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* quiz fadeIn */
+@keyframes fadeInQuiz {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeInQuiz { animation: fadeInQuiz 0.4s ease-out; }
+
+/* vocab fadeIn */
+@keyframes fadeInVocab {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeInVocab { animation: fadeInVocab 0.4s ease-out; }
