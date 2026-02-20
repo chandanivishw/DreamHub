@@ -22,14 +22,16 @@ export default function Signup() {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/auth/register",
+       `${import.meta.env.VITE_API_URL}/api/auth/register`,
         { name, email, password }
       );
 
-      if (response.status === 200) {
-        toast.success("Account created successfully 🎉");
-        navigate("/login");
-      }
+  
+      if (response.status === 200 || response.status === 201) {
+  toast.success(response.data.message); // show the backend message
+  setTimeout(() => navigate("/login"), 1500);
+}
+
     } catch (err) {
       toast.error("User already exists. Please login.");
     } finally {
@@ -40,7 +42,16 @@ export default function Signup() {
   return (
     <div className="min-h-screen flex items-center justify-center 
                     bg-gradient-to-br from-rose-100 via-purple-100 to-indigo-100 px-4">
-      <ToastContainer />
+      {/* <ToastContainer /> */}
+       <ToastContainer
+              position="top-center" // Ensure it's in a visible location
+              autoClose={3000} // Toast disappears after 3 seconds (adjust as necessary)
+              hideProgressBar={false} // Show progress bar
+              newestOnTop={true} // Show newest toast on top
+              closeButton={false} // Hide close button if you want (optional)
+              pauseOnHover={true} // Pause toast on hover (optional)
+              draggable={true}
+            />
 
       {/* Animated Card */}
       <div

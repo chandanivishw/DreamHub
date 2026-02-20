@@ -93,21 +93,6 @@ const Home = () => {
     ))}
   </div>
 </section>
-{/* <section className="py-16 bg-white text-gray-800">
-        <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center px-6">
-          {[
-            { label: "Active Users", val: `${Math.floor(counts[0])}+` },
-            { label: "Quizzes Solved", val: `${Math.floor(counts[1])}+` },
-            { label: "Daily Learners", val: `${Math.floor(counts[2])}+` },
-            { label: "User Rating", val: `${counts[3].toFixed(1)}★` },
-          ].map((s, i) => (
-            <div key={i} className="p-6 rounded-2xl bg-gray-50 shadow hover:shadow-lg transition">
-              <h3 className="text-3xl font-bold text-indigo-600">{s.val}</h3>
-              <p className="text-gray-600">{s.label}</p>
-            </div>
-          ))}
-        </div>
-      </section> */}
 
       {/* Features */}
       <section className="py-20 bg-white text-gray-800">

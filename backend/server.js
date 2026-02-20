@@ -8,8 +8,8 @@ const app = express();
 
 connectDB();
 // console.log("GEMINI KEY 👉", process.env.GEMINI_API_KEY);
-app.use(cors());
-// app.use(express.json());
+app.use(cors({ origin: "*" }));
+app.use(express.json());
 
 // app.use("/api", require("./routes/chatRoutes"));
 // app.use(express.json());

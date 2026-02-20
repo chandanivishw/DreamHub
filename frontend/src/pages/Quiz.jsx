@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { incStat } from "../utils/stats";
 
 export default function Quiz() {
   const [quiz, setQuiz] = useState(null);
@@ -8,7 +9,9 @@ export default function Quiz() {
   const [autoTimer, setAutoTimer] = useState(null);
 
   const fetchQuiz = async () => {
-    const res = await axios.get("http://localhost:8000/api/practice/quiz");
+    const res = await axios.get(
+      `${import.meta.env.VITE_API_URL}/api/practice/quiz`,
+    );
     setQuiz(res.data);
     setSelected(null);
     setShowResult(false);
@@ -25,6 +28,7 @@ export default function Quiz() {
 
     setSelected(index);
     setShowResult(true);
+    incStat("quizAttempts");
 
     const timer = setTimeout(() => {
       fetchQuiz();
@@ -55,7 +59,8 @@ export default function Quiz() {
 
             if (showResult) {
               if (isCorrect) {
-                cls += " bg-green-100 border-green-500 text-green-700 animate-bounce";
+                cls +=
+                  " bg-green-100 border-green-500 text-green-700 animate-bounce";
               } else if (isSelected && !isCorrect) {
                 cls += " bg-red-100 border-red-500 text-red-700 animate-shake";
               } else {
@@ -74,7 +79,9 @@ export default function Quiz() {
               >
                 <div className="flex items-center justify-between">
                   <span>{opt}</span>
-                  {showResult && isCorrect && <span className="text-xl">✔️</span>}
+                  {showResult && isCorrect && (
+                    <span className="text-xl">✔️</span>
+                  )}
                   {showResult && isSelected && !isCorrect && (
                     <span className="text-xl">❌</span>
                   )}

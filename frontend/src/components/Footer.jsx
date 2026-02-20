@@ -65,6 +65,11 @@ const Footer = () => {
                 Quiz
               </Link>
             </li>
+              {/* <li>
+              <Link to="/dashboard" className="hover:text-indigo-400 transition hover:translate-x-1 inline-block" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+                Dashboard
+              </Link>
+            </li> */}
           </ul>
         </div>
 

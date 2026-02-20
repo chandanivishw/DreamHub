@@ -1,6 +1,7 @@
 // lastest
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { incStat } from "../utils/stats";
 
 export default function Vocab() {
   const [vocab, setVocab] = useState(null);
@@ -9,7 +10,9 @@ export default function Vocab() {
   const fetchVocab = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("http://localhost:8000/api/practice/vocab");
+      const res = await axios.get(
+        `${import.meta.env.VITE_API_URL}/api/practice/vocab`,
+      );
       setVocab(res.data);
     } catch (err) {
       console.error("Vocab API error:", err.message);
@@ -59,14 +62,20 @@ export default function Vocab() {
                 onClick={speakWord}
                 className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition"
               >
-                🔊 Hear Pronunciation
+                🔊 Hear
               </button>
 
               <button
                 onClick={fetchVocab}
                 className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition"
               >
-                🔄 New Word
+                🔄 New 
+              </button>
+              <button
+                 onClick={() => incStat("vocabLearned")}
+                className="px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700"
+              >
+                ✅ Learned
               </button>
             </div>
           </>

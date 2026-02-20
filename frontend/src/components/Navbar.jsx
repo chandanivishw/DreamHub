@@ -1,5 +1,6 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -9,7 +10,9 @@ const Navbar = () => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("dreamhubUser");
-    navigate("/");
+    toast.success("Logged out successfully");
+     setTimeout(() => navigate("/"), 1200);
+    // navigate("/");
   };
 
   const linkBase =
@@ -21,6 +24,7 @@ const Navbar = () => {
 
   return (
     <nav className="w-full bg-white/80 backdrop-blur shadow-md px-4 md:px-8 py-4 flex items-center justify-between sticky top-0 z-50 animate-fadeIn">
+    
       <h1
         onClick={() => navigate("/")}
         className="text-2xl font-bold text-indigo-600 cursor-pointer hover:scale-105 transition"
@@ -104,6 +108,10 @@ const Navbar = () => {
             >
               Quiz 🎯
             </NavLink>
+              <NavLink to="/dashboard"  className={(e) => linkBase + " " + linkStyle(e)}
+              onClick={() => setOpen(false)}>📊 Dashboard</NavLink>
+               <NavLink to="/profile"  className={(e) => linkBase + " " + linkStyle(e)}
+              onClick={() => setOpen(false)}>Profile</NavLink>
 
             <button
               onClick={() => {
@@ -114,6 +122,7 @@ const Navbar = () => {
             >
               Logout
             </button>
+              <ToastContainer/>
           </>
         )}
       </div>
@@ -122,3 +131,233 @@ const Navbar = () => {
 };
 
 export default Navbar;
+// import { NavLink, useNavigate } from "react-router-dom";
+// import { useState } from "react";
+
+// const Navbar = () => {
+//   const navigate = useNavigate();
+//   const isLoggedIn = !!localStorage.getItem("dreamhubUser");
+//   const [open, setOpen] = useState(false);
+
+//   const handleLogout = () => {
+//     localStorage.removeItem("token");
+//     localStorage.removeItem("dreamhubUser");
+//     navigate("/");
+//   };
+
+//   const linkBase =
+//     "px-4 py-2 rounded-lg font-medium transition-all duration-200";
+
+//   const linkStyle = ({ isActive }) =>
+//     isActive
+//       ? "text-indigo-600 border-b-2 border-indigo-600"  // Active link style
+//       : "text-gray-600 hover:text-indigo-600 hover:border-b-2 hover:border-indigo-600";  // Hover effect
+
+//   return (
+//     <nav className="w-full bg-white/80 backdrop-blur shadow-md px-4 md:px-8 py-4 flex items-center justify-between sticky top-0 z-50 animate-fadeIn">
+//       <h1
+//         onClick={() => navigate("/")}
+//         className="text-2xl font-bold text-indigo-600 cursor-pointer hover:scale-105 transition"
+//       >
+//         DreamHub ✨
+//       </h1>
+
+//       {/* Mobile Menu Button */}
+//       <button className="md:hidden text-2xl" onClick={() => setOpen(!open)}>
+//         ☰
+//       </button>
+
+//       {/* Links */}
+//       <div
+//         className={`${
+//           open ? "flex" : "hidden"
+//         } md:flex flex-col md:flex-row gap-3 md:gap-4 items-center absolute md:static top-16 left-0 w-full md:w-auto bg-white md:bg-transparent p-4 md:p-0 shadow md:shadow-none rounded-b-xl md:rounded-none`}
+//       >
+//         {!isLoggedIn ? (
+//           <>
+//             <NavLink
+//               to="/"
+//               className={(e) => linkBase + " " + linkStyle(e)}
+//               onClick={() => setOpen(false)}
+//             >
+//               Home
+//             </NavLink>
+//             <NavLink
+//               to="/login"
+//               className={(e) => linkBase + " " + linkStyle(e)}
+//               onClick={() => setOpen(false)}
+//             >
+//               Login
+//             </NavLink>
+//             <NavLink
+//               to="/signup"
+//               className={(e) => linkBase + " " + linkStyle(e)}
+//               onClick={() => setOpen(false)}
+//             >
+//               Signup
+//             </NavLink>
+//           </>
+//         ) : (
+//           <>
+//             <NavLink
+//               to="/"
+//               className={(e) => linkBase + " " + linkStyle(e)}
+//               onClick={() => setOpen(false)}
+//             >
+//               Home 🏠
+//             </NavLink>
+//             <NavLink
+//               to="/practice"
+//               className={(e) => linkBase + " " + linkStyle(e)}
+//               onClick={() => setOpen(false)}
+//             >
+//               Practice 🎤
+//             </NavLink>
+//             <NavLink
+//               to="/vocab"
+//               className={(e) => linkBase + " " + linkStyle(e)}
+//               onClick={() => setOpen(false)}
+//             >
+//               Vocab 📘
+//             </NavLink>
+//             <NavLink
+//               to="/quiz"
+//               className={(e) => linkBase + " " + linkStyle(e)}
+//               onClick={() => setOpen(false)}
+//             >
+//               Quiz 🎯
+//             </NavLink>
+
+//             <button
+//               onClick={() => {
+//                 handleLogout();
+//                 setOpen(false);
+//               }}
+//               className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition hover:scale-105"
+//             >
+//               Logout
+//             </button>
+//           </>
+//         )}
+//       </div>
+//     </nav>
+//   );
+// };
+
+// export default Navbar;
+// import { NavLink, useNavigate } from "react-router-dom";
+// import { useState } from "react";
+
+// const Navbar = () => {
+//   const navigate = useNavigate();
+//   const isLoggedIn = !!localStorage.getItem("dreamhubUser");
+//   const [open, setOpen] = useState(false);
+
+//   const handleLogout = () => {
+//     localStorage.removeItem("token");
+//     localStorage.removeItem("dreamhubUser");
+//     navigate("/");
+//   };
+
+//   const linkBase =
+//     "px-4 py-2 rounded-lg font-medium transition-all duration-200";
+
+//   return (
+//     <nav className="w-full bg-white/80 backdrop-blur shadow-md px-4 md:px-8 py-4 flex items-center justify-between sticky top-0 z-50 animate-fadeIn">
+//       <h1
+//         onClick={() => navigate("/")}
+//         className="text-2xl font-bold text-indigo-600 cursor-pointer hover:scale-105 transition"
+//       >
+//         DreamHub ✨
+//       </h1>
+
+//       {/* Mobile Menu Button */}
+//       <button className="md:hidden text-2xl" onClick={() => setOpen(!open)}>
+//         ☰
+//       </button>
+
+//       {/* Links */}
+//       <div
+//         className={`${
+//           open ? "flex" : "hidden"
+//         } md:flex flex-col md:flex-row gap-3 md:gap-4 items-center absolute md:static top-16 left-0 w-full md:w-auto bg-white md:bg-transparent p-4 md:p-0 shadow md:shadow-none rounded-b-xl md:rounded-none`}
+//       >
+//         {!isLoggedIn ? (
+//           <>
+//             <NavLink
+//               to="/"
+//               className="relative group px-4 py-2 rounded-lg font-medium text-gray-600"
+//               onClick={() => setOpen(false)}
+//             >
+//               Home
+//               <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-indigo-600 transition-all group-hover:w-full group-hover:h-1"></span>
+//             </NavLink>
+//             <NavLink
+//               to="/login"
+//               className="relative group px-4 py-2 rounded-lg font-medium text-gray-600"
+//               onClick={() => setOpen(false)}
+//             >
+//               Login
+//               <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-indigo-600 transition-all group-hover:w-full group-hover:h-1"></span>
+//             </NavLink>
+//             <NavLink
+//               to="/signup"
+//               className="relative group px-4 py-2 rounded-lg font-medium text-gray-600"
+//               onClick={() => setOpen(false)}
+//             >
+//               Signup
+//               <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-indigo-600 transition-all group-hover:w-full group-hover:h-1"></span>
+//             </NavLink>
+//           </>
+//         ) : (
+//           <>
+//             <NavLink
+//               to="/"
+//               className="relative group px-4 py-2 rounded-lg font-medium text-gray-600"
+//               onClick={() => setOpen(false)}
+//             >
+//               Home 🏠
+//               <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-indigo-600 transition-all group-hover:w-full group-hover:h-1"></span>
+//             </NavLink>
+//             <NavLink
+//               to="/practice"
+//               className="relative group px-4 py-2 rounded-lg font-medium text-gray-600"
+//               onClick={() => setOpen(false)}
+//             >
+//               Practice 🎤
+//               <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-indigo-600 transition-all group-hover:w-full group-hover:h-1"></span>
+//             </NavLink>
+//             <NavLink
+//               to="/vocab"
+//               className="relative group px-4 py-2 rounded-lg font-medium text-gray-600"
+//               onClick={() => setOpen(false)}
+//             >
+//               Vocab 📘
+//               <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-indigo-600 transition-all group-hover:w-full group-hover:h-1"></span>
+//             </NavLink>
+//             <NavLink
+//               to="/quiz"
+//               className="relative group px-4 py-2 rounded-lg font-medium text-gray-600"
+//               onClick={() => setOpen(false)}
+//             >
+//               Quiz 🎯
+//               <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-indigo-600 transition-all group-hover:w-full group-hover:h-1"></span>
+//             </NavLink>
+
+//             <button
+//               onClick={() => {
+//                 handleLogout();
+//                 setOpen(false);
+//               }}
+//               className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition hover:scale-105"
+//             >
+//               Logout
+//             </button>
+//           </>
+//         )}
+//       </div>
+//     </nav>
+//   );
+// };
+
+// export default Navbar;

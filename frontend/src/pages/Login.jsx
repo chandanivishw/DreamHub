@@ -17,14 +17,36 @@ const Login = () => {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:8000/api/auth/login",
-        { email, password }
+        `${import.meta.env.VITE_API_URL}/api/auth/login`,
+        { email, password },
       );
 
       localStorage.setItem("token", data.token);
       localStorage.setItem("dreamhubUser", JSON.stringify(data.user));
+      // localStorage.setItem(
+      //   "dreamhubUser",
+      //   JSON.stringify({
+      //     name: data.name || "chandani",
+      //     email: data.email || "chandanivishwakarma581@gmail.com",
+      //     photo: data.photo || "",
+      //   }),
+      // );
+//       localStorage.setItem(
+//   "dreamhubUser",
+//   JSON.stringify({
+//     name: data.user?.name || "",
+//     email: data.user?.email || "",
+//     photo: data.user?.photo || "",
+//   }),
+// );
+// localStorage.setItem("dreamhubUser", JSON.stringify(data.user));
 
-      toast.success("Login successful 🚀");
+
+      toast.success(data.message); // show the backend message
+      // toast.success("Login successful 🚀");
+      toast.info("Redirecting to practice page...");
+      setTimeout(() => navigate("/practice"), 1500);
+      //
       navigate("/practice", { replace: true });
     } catch (error) {
       if (error.response) {
@@ -87,7 +109,10 @@ const Login = () => {
 
         <p className="text-center mt-5 text-sm text-gray-600">
           New here?{" "}
-          <Link to="/signup" className="text-indigo-600 font-medium hover:underline">
+          <Link
+            to="/signup"
+            className="text-indigo-600 font-medium hover:underline"
+          >
             Create account
           </Link>
         </p>

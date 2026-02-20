@@ -80,7 +80,7 @@ exports.login = async (req, res) => {
 
     // ✅ Return token + user info
     return res.status(200).json({
-      message: "Login success",
+      message: "Login successfully",
       token, // ⚡ frontend MUST save this token (localStorage or state)
       user: {
         id: user._id,

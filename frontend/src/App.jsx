@@ -10,10 +10,24 @@ import Vocab from "./pages/Vocab";
 import Quiz from "./pages/Quiz";
 import ScrollToTop from "./components/ScrollToTop";
 
+// import 'animate.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Dashboard from "./pages/Dashboard";
+import Profile from "./pages/profile";
 function App() {
   return (
     <BrowserRouter>
-    <ScrollToTop/>
+     <ToastContainer
+        position="top-center" // Ensure it’s not hidden behind other UI elements
+        autoClose={3000}       // Auto close after 3 seconds
+        hideProgressBar={false}
+        newestOnTop={true}
+        closeButton={false}
+        pauseOnHover={true}
+        draggable={true}
+      />
+      <ScrollToTop />
       <Navbar />
 
       <Routes>
@@ -33,16 +47,29 @@ function App() {
           path="/vocab"
           element={
             <ProtectedRoute>
-              <Vocab/>
+              <Vocab />
             </ProtectedRoute>
-          } />
-     <Route
+          }
+        />
+        <Route
           path="/quiz"
           element={
             <ProtectedRoute>
-              <Quiz/>
+              <Quiz />
             </ProtectedRoute>
-          } />
+          }
+        />
+  <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+           <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+
+{/* <Route path="/dashboard" element={<Dashboard />} /> */}
+<Route path="/profile" element={<Profile />} />
 
         {/* fallback */}
         <Route path="*" element={<Navigate to="/" />} />

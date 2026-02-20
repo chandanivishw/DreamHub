@@ -3,13 +3,17 @@ import { useState, useRef } from "react";
 import { Navigate } from "react-router-dom";
 import axios from "axios";
 import Robot from "../components/Robot";
+// import { incStat } from "../utils/stats";
+import { incStat, updateDailyStreak } from "../utils/stats";
 
 export default function Practice() {
   const token = localStorage.getItem("token");
-  
+
   const [listening, setListening] = useState(false);
   const [spokenText, setSpokenText] = useState("");
-  const [robotReply, setRobotReply] = useState("Tap the mic and speak English 😊");
+  const [robotReply, setRobotReply] = useState(
+    "Tap the mic and speak English 😊",
+  );
   const [cooldown, setCooldown] = useState(false); // 🔥 NEW
 
   const recognitionRef = useRef(null);
@@ -60,13 +64,13 @@ export default function Practice() {
           setCooldown(true); // 🔥 start cooldown
 
           const res = await axios.post(
-            "http://localhost:8000/api/chat",
+            `${import.meta.env.VITE_API_URL}/api/chat`,
             { message: transcript },
             {
               headers: {
                 Authorization: `Bearer ${token}`,
               },
-            }
+            },
           );
 
           if (!res.data?.reply) {
@@ -75,6 +79,15 @@ export default function Practice() {
           }
 
           setRobotReply(res.data.reply);
+          // incStat("practiceCount", 1); // 👈 practice session count
+          incStat("practiceCount");
+          // updateDailyStreak();
+          updateDailyStreak(); // 👈 daily streak update
+          const newStreak = updateDailyStreak();
+          window.dispatchEvent(
+            new CustomEvent("streakUpdated", { detail: newStreak }),
+          );
+
           speak(res.data.reply);
 
           // 🔥 20 seconds cooldown
@@ -131,8 +144,8 @@ export default function Practice() {
         {listening
           ? "Listening..."
           : cooldown
-          ? "⏳ Please wait 20 seconds..."
-          : "Tap mic to speak"}
+            ? "⏳ Please wait 20 seconds..."
+            : "Tap mic to speak"}
       </p>
     </div>
   );
