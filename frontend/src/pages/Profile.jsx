@@ -122,7 +122,7 @@ const Profile = () => {
       : "/default-avatar.jpeg"
   }
   alt="profile"
-  className="w-24 h-24 sm:w-28 sm:h-28 rounded-full mx-auto object-cover border-4 border-indigo-400 shadow"
+  className="w-24 h-24 sm:w-28 sm:h-28 rounded-full mx-auto object-cover border"
 />
 
         <label className="block mt-4 text-sm sm:text-base text-indigo-600 font-medium cursor-pointer hover:underline">
