@@ -43,12 +43,18 @@ export default function Quiz() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-slate-100 px-4">
-      <h2 className="text-2xl font-bold mb-4">🎯 English Quiz</h2>
+<div className="min-h-screen 
+bg-gray-50 dark:bg-gray-900 
+text-gray-900 dark:text-gray-100
+flex flex-col items-center justify-center
+relative transition duration-300">      
+<h2 className="text-2xl font-bold mb-4">🎯 English Quiz</h2>
 
       {quiz && (
-        <div className="bg-white p-6 rounded-xl shadow max-w-md w-full animate-fadeIn">
-          <p className="mb-4 font-medium text-lg">{quiz.question}</p>
+<div className="bg-white dark:bg-gray-800 
+text-gray-900 dark:text-gray-100
+p-6 rounded-xl shadow max-w-md w-full animate-fadeIn transition">        
+  <p className="mb-4 font-medium text-lg">{quiz.question}</p>
 
           {quiz.options.map((opt, index) => {
             const isCorrect = index === quiz.answer;
@@ -64,10 +70,10 @@ export default function Quiz() {
               } else if (isSelected && !isCorrect) {
                 cls += " bg-red-100 border-red-500 text-red-700 animate-shake";
               } else {
-                cls += " bg-gray-50";
+                cls += " bg-gray-50 dark:bg-gray-700";
               }
             } else {
-              cls += " hover:bg-indigo-50";
+              cls += " hover:bg-indigo-50 dark:hover:bg-gray-600";
             }
 
             return (

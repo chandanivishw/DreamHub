@@ -121,8 +121,12 @@ export default function Practice() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-100 flex flex-col items-center justify-center px-4 text-center">
-      <Robot message={robotReply} />
+<div className="min-h-screen 
+bg-gray-50 dark:bg-gray-900 
+text-gray-900 dark:text-gray-100
+flex flex-col items-center justify-center
+relative transition duration-300">      
+   <Robot message={robotReply} />
 
       {spokenText && (
         <p className="mt-4 text-gray-700">

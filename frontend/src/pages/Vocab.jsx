@@ -35,12 +35,17 @@ export default function Vocab() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-indigo-50 to-slate-100 px-4">
-      <h2 className="text-3xl font-bold mb-6 text-indigo-700">
+  
+<div className="min-h-screen 
+bg-gray-50 dark:bg-gray-900 
+text-gray-900 dark:text-gray-100 
+transition duration-300
+flex flex-col items-center justify-center p-6">
+     <h2 className="text-3xl font-bold mb-6 text-indigo-700">
         📘 Daily Vocabulary
       </h2>
 
-      <div className="bg-white p-6 rounded-2xl shadow-xl max-w-md w-full text-center animate-fadeIn">
+      <div className="bg-blue-100 p-6 rounded-2xl shadow-xl max-w-md w-full text-center animate-fadeIn">
         {loading && <p className="text-gray-500">Loading new word...</p>}
 
         {vocab && !loading && (
@@ -82,5 +87,6 @@ export default function Vocab() {
         )}
       </div>
     </div>
+   
   );
 }

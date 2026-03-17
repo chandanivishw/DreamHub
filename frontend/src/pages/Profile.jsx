@@ -93,7 +93,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="max-w-md w-full mx-auto p-5 sm:p-6 bg-white rounded-2xl shadow-lg mt-6">
+    <div className="max-w-md w-full mx-auto p-5 sm:p-6 bg-blue-200 rounded-2xl shadow-lg mt-6">
       <h2 className="text-xl sm:text-2xl font-bold mb-6 text-center">
         👤 My Profile
       </h2>

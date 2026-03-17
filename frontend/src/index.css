@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 
+/* ⭐ ADD THIS */
+html.dark body {
+  background-color: #111827;   /* gray-900 */
+}
+
 /* @keyframes fadeIn {
   from {
     opacity: 0;

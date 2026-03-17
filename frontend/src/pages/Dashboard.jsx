@@ -48,8 +48,15 @@ useEffect(() => {
 // }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-700 to-red-400 p-6 text-white">
-      <h1 className="text-3xl font-bold mb-6 text-center">Your Dashboard 🚀</h1>
+  <div className="min-h-screen bg-gradient-to-br from-gray-50 to-indigo-50 dark:from-gray-900 dark:to-gray-800 text-gray-900 dark:text-gray-100 transition duration-300">
+      
+
+   
+<div className="min-h-screen bg-gradient-to-br 
+from-purple-600 to-red-400 
+dark:from-gray-900 dark:to-gray-800 
+p-6 text-white transition duration-300">      
+<h1 className="text-3xl font-bold mb-6 text-center">Your Dashboard 🚀</h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto">
         <div className="bg-white/10 backdrop-blur p-6 rounded-2xl shadow-lg text-center hover:scale-105 transition">
@@ -73,7 +80,9 @@ useEffect(() => {
         </div>
       </div>
     </div>
+     </div>
   );
 };
 
 export default Dashboard;
+
