@@ -1,4 +1,5 @@
 // backend/controllers/practiceController.js
+const SpeakingScore = require("../models/SpeakingScore");
 const dailyVocab = [
   {
     word: "Confident",
@@ -60,4 +61,39 @@ exports.getDailyVocab = (req, res) => {
 exports.getQuiz = (req, res) => {
   const random = quizQuestions[Math.floor(Math.random() * quizQuestions.length)];
   res.json(random);
+};
+
+
+//Added Feature :- Speaking Graph
+
+// Save Score
+exports.saveScore = async (req, res) => {
+  try {
+    const { userId, score } = req.body;
+
+    const newScore = new SpeakingScore({
+      userId,
+      score,
+      date: new Date(),
+    });
+
+    await newScore.save();
+
+    res.json({ success: true });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+// Get Progress
+exports.getProgress = async (req, res) => {
+  try {
+    const data = await SpeakingScore.find({
+      userId: req.params.userId,
+    }).sort({ date: 1 });
+
+    res.json(data);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 };
