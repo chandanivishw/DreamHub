@@ -1,4 +1,3 @@
-// utils/stats.js (FINAL - CLEAN & USER-WISE)
 export const getCurrentUser = () => {
   const u = JSON.parse(localStorage.getItem("dreamhubUser"));
   // console.log("Current user:", u); // 👈 temporary

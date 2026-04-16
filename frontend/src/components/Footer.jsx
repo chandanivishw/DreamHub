@@ -12,22 +12,22 @@ const Footer = () => {
             DreamHub ✨
           </h3>
           <p className="text-sm leading-relaxed text-gray-400">
-            Practice English speaking confidently with AI.  
+            Practice English speaking confidently with AI.
             Voice to voice. No fear. No judgement.
           </p>
 
           {/* Social Icons */}
           <div className="flex gap-4 mt-4">
             <a href="https://github.com/" target="_blank" rel="noreferrer"
-               className="text-gray-400 hover:text-white hover:scale-110 transition">
+              className="text-gray-400 hover:text-white hover:scale-110 transition">
               <FaGithub size={22} />
             </a>
             <a href="https://linkedin.com/" target="_blank" rel="noreferrer"
-               className="text-gray-400 hover:text-blue-400 hover:scale-110 transition">
+              className="text-gray-400 hover:text-blue-400 hover:scale-110 transition">
               <FaLinkedin size={22} />
             </a>
             <a href="https://instagram.com/" target="_blank" rel="noreferrer"
-               className="text-gray-400 hover:text-pink-400 hover:scale-110 transition">
+              className="text-gray-400 hover:text-pink-400 hover:scale-110 transition">
               <FaInstagram size={22} />
             </a>
           </div>
@@ -35,7 +35,7 @@ const Footer = () => {
 
         {/* Links */}
 
-{/* <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Home</Link>
+        {/* <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Home</Link>
 <Link to="/vocab" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Vocabulary</Link>
 <Link to="/quiz" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Quiz</Link>
 <Link to="/login" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Login</Link> 
@@ -65,7 +65,7 @@ const Footer = () => {
                 Quiz
               </Link>
             </li>
-              {/* <li>
+            {/* <li>
               <Link to="/dashboard" className="hover:text-indigo-400 transition hover:translate-x-1 inline-block" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
                 Dashboard
               </Link>
@@ -102,5 +102,5 @@ const Footer = () => {
 };
 
 export default Footer;
- 
+
 

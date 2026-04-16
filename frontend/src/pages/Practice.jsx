@@ -1,9 +1,7 @@
-//latest
 import { useState, useRef } from "react";
 import { Navigate } from "react-router-dom";
 import axios from "axios";
 import Robot from "../components/Robot";
-// import { incStat } from "../utils/stats";
 import { incStat, updateDailyStreak } from "../utils/stats";
 
 export default function Practice() {
@@ -79,32 +77,29 @@ export default function Practice() {
           }
 
           setRobotReply(res.data.reply);
-          // incStat("practiceCount", 1); // 👈 practice session count
-          // incStat("practiceCount");
-          // // updateDailyStreak();
-          // updateDailyStreak(); // 👈 daily streak update
-          setRobotReply(res.data.reply);
 
-// ✅ SAVE SCORE
-const finalScore = transcript.length > 20 ? 80 : 50;
-const user = JSON.parse(localStorage.getItem("dreamhubUser"));
+          // setRobotReply(res.data.reply);
 
-await fetch("http://localhost:8000/api/practice/save-score", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    userId: user._id,
-    score: finalScore,
-  }),
-});
+          // ✅ SAVE SCORE
+          const finalScore = transcript.length > 20 ? 80 : 50;
+          const user = JSON.parse(localStorage.getItem("dreamhubUser"));
 
-console.log("Score saved:", finalScore);
+          await fetch("http://localhost:8000/api/practice/save-score", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              userId: user._id,
+              score: finalScore,
+            }),
+          });
 
-// existing stats
-incStat("practiceCount");
-updateDailyStreak();
+          console.log("Score saved:", finalScore);
+
+          // existing stats
+          incStat("practiceCount");
+          updateDailyStreak();
           const newStreak = updateDailyStreak();
           window.dispatchEvent(
             new CustomEvent("streakUpdated", { detail: newStreak }),
@@ -143,12 +138,12 @@ updateDailyStreak();
   };
 
   return (
-<div className="min-h-screen 
+    <div className="min-h-screen 
 bg-gray-50 dark:bg-gray-900 
 text-gray-900 dark:text-gray-100
 flex flex-col items-center justify-center
-relative transition duration-300">      
-   <Robot message={robotReply} />
+relative transition duration-300">
+      <Robot message={robotReply} />
 
       {spokenText && (
         <p className="mt-4 text-gray-700">
@@ -159,9 +154,8 @@ relative transition duration-300">
       <button
         onClick={startListening}
         disabled={cooldown} // 🔥 disable during cooldown
-        className={`mt-8 w-20 h-20 rounded-full text-white text-3xl shadow-lg ${
-          listening ? "bg-green-500" : "bg-red-500"
-        } ${cooldown ? "opacity-50 cursor-not-allowed" : ""}`}
+        className={`mt-8 w-20 h-20 rounded-full text-white text-3xl shadow-lg ${listening ? "bg-green-500" : "bg-red-500"
+          } ${cooldown ? "opacity-50 cursor-not-allowed" : ""}`}
       >
         🎤
       </button>

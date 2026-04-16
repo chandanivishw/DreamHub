@@ -43,25 +43,34 @@ export default function Quiz() {
   };
 
   return (
-<div className="min-h-screen 
+    <div
+      className="min-h-screen 
 bg-gray-50 dark:bg-gray-900 
 text-gray-900 dark:text-gray-100
-flex flex-col items-center justify-center
-relative transition duration-300">      
-<h2 className="text-2xl font-bold mb-4">🎯 English Quiz</h2>
+flex flex-col items-center justify-start pt-2 sm:justify-center sm:pt-0
+relative transition duration-300 p-2"
+    >
+      <h2 className="text-xl sm:text-2xl font-bold mb-4 text-center">
+        🎯 English Quiz
+      </h2>
 
       {quiz && (
-<div className="bg-white dark:bg-gray-800 
-text-gray-900 dark:text-gray-100
-p-6 rounded-xl shadow max-w-md w-full animate-fadeIn transition">        
-  <p className="mb-4 font-medium text-lg">{quiz.question}</p>
+        <div
+          className="bg-white dark:bg-gray-800 
+    text-gray-900 dark:text-gray-100
+    p-4 sm:p-6 rounded-xl shadow 
+    max-w-md w-full animate-fadeIn transition"
+        >
+          <p className="mb-4 font-medium text-base sm:text-lg leading-relaxed">
+            {quiz.question}
+          </p>
 
           {quiz.options.map((opt, index) => {
             const isCorrect = index === quiz.answer;
             const isSelected = index === selected;
 
             let cls =
-              "block w-full text-left px-4 py-2 border rounded mb-2 transition-all duration-300";
+              "block w-full text-left px-3 sm:px-4 py-2.5 sm:py-2 border rounded mb-2 transition-all duration-300 text-sm sm:text-base";
 
             if (showResult) {
               if (isCorrect) {
@@ -83,13 +92,14 @@ p-6 rounded-xl shadow max-w-md w-full animate-fadeIn transition">
                 disabled={showResult}
                 className={cls}
               >
-                <div className="flex items-center justify-between">
-                  <span>{opt}</span>
+                <div className="flex items-center justify-between gap-2">
+                  <span className="break-words">{opt}</span>
+
                   {showResult && isCorrect && (
-                    <span className="text-xl">✔️</span>
+                    <span className="text-lg sm:text-xl">✔️</span>
                   )}
                   {showResult && isSelected && !isCorrect && (
-                    <span className="text-xl">❌</span>
+                    <span className="text-lg sm:text-xl">❌</span>
                   )}
                 </div>
               </button>
@@ -97,17 +107,20 @@ p-6 rounded-xl shadow max-w-md w-full animate-fadeIn transition">
           })}
 
           {showResult && (
-            <p className="mt-3 text-center font-semibold">
+            <p className="mt-3 text-center font-semibold text-sm sm:text-base">
               {selected === quiz.answer
                 ? "🎉 Correct! Keep going!"
                 : "😅 Oops! Correct option highlighted."}
             </p>
           )}
 
-          {/* 👇 Next button */}
+          {/* Next button */}
           <button
             onClick={handleNext}
-            className="mt-4 w-full px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700"
+            className="mt-4 w-full px-4 py-2.5 
+        bg-indigo-600 text-white rounded 
+        hover:bg-indigo-700 
+        text-sm sm:text-base"
           >
             Next Question ➡️
           </button>
